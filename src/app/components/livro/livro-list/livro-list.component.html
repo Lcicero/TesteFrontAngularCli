@@ -1,0 +1,99 @@
+<form [formGroup]="form" autocomplete="off" novalidate>
+    <div
+      fxLayout
+      fxLayout.lt-md="column wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap.gt-sm="150px"
+      fxLayoutGap.lt.md="20px"
+    >
+      <mat-form-field>
+        <input matInput type="text" placeholder="Titulo" formControlName="titulo" />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Autor"
+          formControlName="autor"
+        />
+      </mat-form-field>
+  
+      <div>
+        <button mat-raised-button color="primary" (click)="searchByPredicate()">
+          Buscar
+        </button>
+      </div>
+    </div>
+  </form>
+  <div  style="margin-left: 20px; margin-bottom: 10px" >
+    <button mat-raised-button color="primary"  routerLink="new" >
+      Cadastrar
+    </button>
+  </div>
+  
+  <mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+    <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas"></mat-row>
+  
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef   >
+        Codigo
+      </mat-header-cell>
+      <mat-cell *matCellDef="let cat">
+        {{ cat.id }}
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Titulo">
+      <mat-header-cell *matHeaderCellDef   >
+        Titulo
+      </mat-header-cell>
+      <mat-cell *matCellDef="let cat">
+        {{ cat.titulo }}
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Autor">
+      <mat-header-cell *matHeaderCellDef   >
+        Autor
+      </mat-header-cell>
+      <mat-cell *matCellDef="let cat">
+        {{ cat.autor }}
+      </mat-cell>
+    </ng-container>
+
+    
+    
+    <ng-container matColumnDef="dataPublicacao">
+      <mat-header-cell *matHeaderCellDef   >
+        Data Publicacão
+      </mat-header-cell>
+      <mat-cell *matCellDef="let cat">
+        {{ cat.dataPublicacao | data }}
+      </mat-cell>
+    </ng-container>
+
+  
+    <ng-container matColumnDef="Ação">
+      <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+      <mat-cell *matCellDef="let cat">
+        <div class="example-button-row">
+          <a mat-raised-button color="warn" [routerLink]="['edit',cat.id]">
+            <mat-icon matTooltip="Editar Livro">system_update</mat-icon></a
+          >
+          <a
+            mat-raised-button
+            color="primary"
+            (click)="removePop(cat.id)"
+            style="cursor: pointer"
+            ><mat-icon matTooltip="Remover Livro">clear</mat-icon></a
+          >
+        </div>
+      </mat-cell>
+    </ng-container>
+  </mat-table>
+  
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 25]">
+  </mat-paginator>
+  

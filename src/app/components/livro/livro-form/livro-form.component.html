@@ -1,0 +1,212 @@
+<section
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+  style="margin-top: 10px; margin-bottom: 10px"
+>
+  <mat-card fxFlex="100%" fxFlex.xs="100%">
+    <mat-card-title> {{ title }} </mat-card-title>
+    <form
+      [formGroup]="form"
+      autocomplete="off"
+      novalidate
+      fxLayout="column wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="titulo"
+            formControlName="titulo"
+            name="titulo"
+          />
+          <mat-hint align="end">Titulo do livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('titulo').hasError('required') &&
+              (form.get('titulo').dirty || form.get('titulo').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="genero"
+            formControlName="genero"
+            name="genero"
+          />
+          <mat-hint align="end">Genero do livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('genero').hasError('required') &&
+              (form.get('genero').dirty || form.get('genero').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="autor"
+            formControlName="autor"
+            name="autor"
+          />
+          <mat-hint align="end">Autor do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('autor').hasError('required') &&
+              (form.get('autor').dirty || form.get('autor').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="descricao"
+            formControlName="descricao"
+            name="descricao"
+          />
+          <mat-hint align="end">Descrição do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('descricao').hasError('required') &&
+              (form.get('descricao').dirty || form.get('descricao').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="editora"
+            formControlName="editora"
+            name="editora"
+          />
+          <mat-hint align="end">Editora do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('editora').hasError('required') &&
+              (form.get('editora').dirty || form.get('editora').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="linkURL"
+            formControlName="linkURL"
+            name="linkURL"
+          />
+          <mat-hint align="end">Link do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('linkURL').hasError('required') &&
+              (form.get('linkURL').dirty || form.get('linkURL').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="capaURL"
+            formControlName="capaURL"
+            name="capaURL"
+          />
+          <mat-hint align="end">Capa Url do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('capaURL').hasError('required') &&
+              (form.get('capaURL').dirty || form.get('capaURL').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="pagina"
+            formControlName="pagina"
+            name="pagina"
+          />
+          <mat-hint align="end">Pagina do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('pagina').hasError('required') &&
+              (form.get('pagina').dirty || form.get('pagina').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="data"
+            placeholder="Data"
+            readonly="readonly"
+            formControlName="dataPublicacao"
+          />
+          <mat-datepicker-toggle matSuffix [for]="data"></mat-datepicker-toggle>
+          <mat-datepicker touchUi="true" #data></mat-datepicker>
+
+          <mat-hint align="end">Data Publicacao do Livro </mat-hint>
+          <mat-error
+            class="error-message"
+            *ngIf="
+              form.get('dataPublicacao').hasError('required') &&
+              (form.get('dataPublicacao').dirty ||
+                form.get('dataPublicacao').touched)
+            "
+            >Campo obrigaotrio</mat-error
+          >
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="save()"
+          [disabled]="!form.valid"
+        >
+          Create
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
